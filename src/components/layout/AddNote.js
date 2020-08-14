@@ -5,13 +5,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import { addNote } from '../../redux/actions/actions';
+import axios from 'axios';
 
 class AddNote extends Component {
     constructor(props){
         super(props);
         this.state = {
             title: '',
-            content: ''
+            content: '',
+            key: ''
         };
     }
 
@@ -22,9 +24,17 @@ class AddNote extends Component {
     handleSubmission = (e) => {
         e.preventDefault();
         const { title, content } = this.state;
-        if (title && content){
-            this.props.addNote(title, content);
-            this.setState({ title: '', content: ''});
+        if (title && content){            
+            axios.post('http://127.0.0.1:4002/note/insert', {
+                title: title,
+                content: content
+            }).then((res) => {
+                console.log(res);
+                this.props.addNote(title, content, res.data.key);
+            }).catch((err) => { 
+                console.log(err)
+            });
+            this.setState({ title: '', content: '', key: ''});
         } else{
             alert('Please input all fields');
         }        

@@ -3,7 +3,8 @@ import { ADD_NOTE, REMOVE_NOTE } from '../actions/actions';
 const initialState = {
   notes: [{
     title: 'test',
-    content: 'content test'
+    content: 'content test',
+    key: '0'
   }]
 };
 
@@ -15,7 +16,8 @@ function rootReducer(state = initialState, action) {
           ...state.notes,
           {
             title: action.title,
-            content: action.content
+            content: action.content,
+            key: action.key
           }
         ]
       };
