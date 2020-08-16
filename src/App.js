@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/pages/Home';
 import Notes from './components/pages/Notes';
+import UpdateNotes from './components/layout/UpdateNote';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/notes" render={() => <Notes />} />
+          <Route exact path="/notes/update/:key" component={UpdateNotes} />
         </Switch>
       </div>
     </Router>
