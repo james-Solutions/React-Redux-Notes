@@ -1,4 +1,4 @@
-import { ADD_NOTE, UPDATE_NOTE, REMOVE_NOTE } from '../actions/actions';
+import { ADD_NOTE, REMOVE_NOTE } from '../actions/actions';
 
 const initialState = {
   notes: []
@@ -16,16 +16,6 @@ function rootReducer(state = initialState, action) {
             key: action.key
           }
         ]
-      };
-    case UPDATE_NOTE:
-      return {
-        notes: state.notes.map((currentValue) => {
-          if (currentValue.key === action.key) {
-            currentValue.title = action.title;
-            currentValue.content = action.content;
-          }
-          return currentValue;
-        })
       };
     case REMOVE_NOTE:
       return {

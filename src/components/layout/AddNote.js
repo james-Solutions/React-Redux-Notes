@@ -29,12 +29,15 @@ class AddNote extends Component {
                 title: title,
                 content: content
             }).then((res) => {
-                console.log(res);
-                this.props.addNote(title, content, res.data.key);
+                if (res.data.response === 'failed to insert note') {
+                    alert('Could not create the note');
+                } else {
+                    this.props.addNote(title, content, res.data.key);
+                    this.setState({ title: '', content: '', key: ''});
+                }
             }).catch((err) => { 
                 console.log(err)
             });
-            this.setState({ title: '', content: '', key: ''});
         } else{
             alert('Please input all fields');
         }        

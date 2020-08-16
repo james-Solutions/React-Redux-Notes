@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
-import AppNavBar from './AppNavBar';
+import AppNavBar from '../layout/AppNavBar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { connect } from 'react-redux';
-import { updateNoteAction } from '../../redux/actions/actions';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 class UpdateNote extends Component {
     constructor(props){
         super(props);
         this.state = {
-            title: this.props.location.state.title,
-            content: this.props.location.state.content,
+            title: '',
+            content: '',
             key: this.props.match.params.key,
         };
+    }
+
+
+    componentDidMount() {
+        axios.post('http://127.0.0.1:4002/note/read/single', {
+            key: this.state.key
+        }).then((res) => {
+            if (res.data.response === 'failed'){
+                this.setState({ title: 'failed to read the note'});
+                this.setState({ content: 'failed to read the note'});
+                window.location.replace('/notes');
+            } else {
+                this.setState({ title: res.data.response[0].title});
+                this.setState({ content: res.data.response[0].comment});
+            }
+        }).catch((err) => {
+            console.log(err)
+        });
     }
 
     handleChange = (e) => {
@@ -33,8 +48,11 @@ class UpdateNote extends Component {
                 content: this.state.content,
                 key: this.state.key
             }).then((res) =>{
-                this.props.updateNoteAction(this.state.title, this.state.content, this.state.key);    
-                window.location.replace('/notes');
+                if (res.data.response === 'failed to update note') {
+                    alert('Could not update the note');
+                } else {
+                    window.location.replace('/notes');
+                }
             }).catch((err) => {
                 console.log(err);
             });
@@ -92,15 +110,5 @@ class UpdateNote extends Component {
     }
 }
 
-UpdateNote.propTypes = {
-    // key: PropTypes.string,
-    title: PropTypes.string,
-    content: PropTypes.string
-};
 
-export default connect(
-    null,
-    {
-      updateNoteAction: updateNoteAction
-    }
-  )(UpdateNote);
+export default UpdateNote;

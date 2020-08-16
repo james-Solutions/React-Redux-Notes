@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/pages/Home';
 import Notes from './components/pages/Notes';
-import UpdateNotes from './components/layout/UpdateNote';
+import UpdateNotes from './components/pages/UpdateNote';
 
 function App() {
   return (

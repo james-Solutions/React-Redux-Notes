@@ -18,7 +18,7 @@ class AppNavBar extends Component {
                             </Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="/notes">Welcome, Name</Nav.Link>
+                            <Nav.Link href="/notes">Welcome</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
