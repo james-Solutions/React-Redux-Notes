@@ -9,7 +9,7 @@ To install all the modules and start the development server: <br />
 npm i
 npm start
 ```
-If you wish to interact with a Node JS Server, follow the link below. You will need to setup your own database connection information in the server code.
+If you wish to interact with a Node JS Server, follow the link below. You will need to setup your own MySQL database connection information in the server code.
 
 ### Links
 [https://github.com/james-Solutions/React-Redux-Notes-Server](https://github.com/james-Solutions/React-Redux-Notes-Server).<br />
