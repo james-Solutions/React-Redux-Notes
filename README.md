@@ -2,6 +2,9 @@
 
 This is a simple React App that uses React-Redux to manage the state and React Bootstrap for styling. As well, it performs basic CRUD operations with a Node JS server that updates a MySQL database of notes. <br />
 
+### Todo
+Implement Redux Thunk and a dispatch API rather than directly calling axios
+
 ## Getting started
 
 To install all the modules and start the development server: <br />
